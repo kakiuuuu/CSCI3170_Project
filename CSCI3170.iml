@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/ojdbc10.jar!/" />
+          <root url="jar://$MODULE_DIR$/ojdbc10.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

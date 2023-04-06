@@ -6,9 +6,13 @@ import java.util.Date;
 
 // Class
 public class Library {
-
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
     public static void printMainMenu() {
         Date date = new Date();
+        clearScreen();
         System.out.println("===== Welcome to Book Ordering Management System =====");
         System.out.println(" + System Date: " + date);
         System.out.println(" + Database Records: Books (999), Customers (999), Orders (999)");
@@ -21,6 +25,12 @@ public class Library {
     }
 
     public static void printCustomerMenu() {
+        Date date = new Date();
+        clearScreen();
+        System.out.println("===== Welcome to Book Ordering Management System =====");
+        System.out.println(" + System Date: " + date);
+        System.out.println(" + Database Records: Books (999), Customers (999), Orders (999)");
+        System.out.println("--------------------------------------------");
         System.out.println("> 1 - Book Search");
         System.out.println("> 2 - Place an Order");
         System.out.println("> 3 - Check History Orders");
@@ -29,6 +39,12 @@ public class Library {
     }
 
     public static void printBookstoreMenu() {
+        Date date = new Date();
+        clearScreen();
+        System.out.println("===== Welcome to Book Ordering Management System =====");
+        System.out.println(" + System Date: " + date);
+        System.out.println(" + Database Records: Books (999), Customers (999), Orders (999)");
+        System.out.println("--------------------------------------------");
         System.out.println("> 1 - Order Update");
         System.out.println("> 2 - Order Query");
         System.out.println("> 3 - N Most Popular Books");
