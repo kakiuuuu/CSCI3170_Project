@@ -2,8 +2,24 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
+  </component>
+  <component name="DBNavigator.Project.DataExportManager">
+    <export-instructions>
+      <create-header value="true" />
+      <friendly-headers value="false" />
+      <quote-values-containing-separator value="true" />
+      <quote-all-values value="false" />
+      <value-separator value="" />
+      <file-name value="" />
+      <file-location value="" />
+      <scope value="GLOBAL" />
+      <destination value="FILE" />
+      <format value="EXCEL" />
+      <charset value="UTF-8" />
+      <charset value="UTF-8" />
+    </export-instructions>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
@@ -13,18 +29,51 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="39aefd94-2427-4f76-bbe6-856335919f4c">
-      <console name="Oracle" type="STANDARD" schema="H020" session="Main" />
-      <console name="Oracle 1" type="STANDARD" schema="H020" session="Main"><![CDATA[select * from s1;]]></console>
+      <console name="Oracle" type="STANDARD" schema="H020" session="Main"><![CDATA[delete from BOOK;
+delete from CUSTOMER;
+delete from BOOK_ORDER;
+drop table  if exists BOOK;
+INSERT INTO BOOK ( ISBN, TITLE, AUTHORS, PRICE, INVENTORY ) VALUES ( '0-1951-5141-1', 'adsfnkadsf', 'Mark P. O. Morford', 10, 110 );
+INSERT INTO BOOK ( ISBN, TITLE, AUTHORS, PRICE, INVENTORY ) VALUES ( '0-1951-5141-2', 'fndskjnfds', 'Mark P. O. asfas', 101, 10 );
+INSERT INTO BOOK ( ISBN, TITLE, AUTHORS, PRICE, INVENTORY ) VALUES ( '0-1951-5141-3', 'asdkjnfks', 'gdfgdf P. O. Morford', 110, 10 );
+INSERT INTO BOOK ( ISBN, TITLE, AUTHORS, PRICE, INVENTORY ) VALUES ( '0-1951-5141-4', 'af aqq', 'nndf P. O. Morford', 210, 710 );
+INSERT INTO BOOK ( ISBN, TITLE, AUTHORS, PRICE, INVENTORY ) VALUES ( '0-1951-5141-5', 'Book5', 'Mark. Morford', 150, 110 );
+INSERT INTO CUSTOMER ( "uid", NAME, ADDRESS ) VALUES ( '1', 'Donald', 'shaw' );
+INSERT INTO CUSTOMER ( "uid", NAME, ADDRESS ) VALUES ( '2', 'Man', 'shaw' );
+INSERT INTO CUSTOMER ( "uid", NAME, ADDRESS ) VALUES ( '3', 'Kim', 'UC' );
+INSERT INTO CUSTOMER ( "uid", NAME, ADDRESS ) VALUES ( '6', 'Test', '2suk' );
+INSERT INTO BOOK_ORDER ( OID, "uid", ISBN, "date", QUANTITY, STATUS ) VALUES ( '1', '1', '0-1951-5141-1', sysdate, 1, 'ordered' );
+INSERT INTO BOOK_ORDER ( OID, "uid", ISBN, "date", QUANTITY, STATUS ) VALUES ( '1', '1', '0-1951-5141-2', sysdate, 1, 'ordered' );
+INSERT INTO BOOK_ORDER ( OID, "uid", ISBN, "date", QUANTITY, STATUS ) VALUES ( '2', '2', '0-1951-5141-3', sysdate, 3, 'ordered' );
+INSERT INTO BOOK_ORDER ( OID, "uid", ISBN, "date", QUANTITY, STATUS ) VALUES ( '3', '3', '0-1951-5141-4', sysdate, 51, 'ordered' );
+select * from CUSTOMER;
+select * from BOOK;
+SELECT * FROM BOOK_ORDER;
+INSERT INTO BOOK_ORDER (OID, "uid", ISBN, QUANTITY, "date", STATUS) VALUES ('30', '1', '0-1951-5141-1', 3, '10-DEC-92', 'ordered')]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="39aefd94-2427-4f76-bbe6-856335919f4c" object-ref="schemas/H020/tables/BOOK_ORDER" />
+    </open-files>
+  </component>
+  <component name="DBNavigator.Project.DatabaseSessionManager">
+    <connection id="39aefd94-2427-4f76-bbe6-856335919f4c">
+      <session name="Session 1" id="e6d4cde7-956a-4732-8283-478c4f0d1ad9" />
+    </connection>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="39aefd94-2427-4f76-bbe6-856335919f4c" dataset="H020.BOOK_ORDER" active-filter-id="EMPTY_FILTER">
+      <filter id="e53e941d-7cc5-48d3-98c5-d57860c2077d" name="1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="UID" operator="=" value="1" active="true" />
+      </filter>
+    </filter-actions>
     <filter-actions connection-id="39aefd94-2427-4f76-bbe6-856335919f4c" dataset="H020.S1" active-filter-id="" />
+    <filter-actions connection-id="39aefd94-2427-4f76-bbe6-856335919f4c" dataset="H020.CUSTOMER" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="39aefd94-2427-4f76-bbe6-856335919f4c" dataset="H020.BOOK" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -34,10 +83,19 @@
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
-    <filters />
+    <filters>
+      <filter connection-id="39aefd94-2427-4f76-bbe6-856335919f4c" schema="" object-type="schema" join-type="AND">
+        <condition operator="EQUAL" pattern="H020" active="true" />
+      </filter>
+    </filters>
+  </component>
+  <component name="DBNavigator.Project.ParserDiagnosticsManager">
+    <diagnostics-history />
   </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
-    <recently-used-interfaces />
+    <recently-used-interfaces>
+      <mapping database-type="ORACLE" interface-id="DEFAULT" />
+    </recently-used-interfaces>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>

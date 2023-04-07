@@ -3,7 +3,7 @@ package Library;
 import java.sql.*;
 
 public class Conn {
-    public static Connection conn() {
+    public static Connection makeConnection() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (Exception x) {
@@ -22,13 +22,6 @@ public class Conn {
         return null;
     }
 
-    public static void exec(Connection conn, String sql) throws SQLException {
-//        Statement stmt = conn.createStatement();
-//        ResultSet rs = stmt.executeQuery(sql);
-//        while (rs.next()) {
-//            System.out.println(rs.getString(1) + " " + rs.getString(2));
-//        }
-//        rs.close();
-//        stmt.close();
-    }
+
+
 }

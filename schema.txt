@@ -1,0 +1,37 @@
+CREATE TABLE BOOK (
+   ISBN       VARCHAR2(13 Byte) PRIMARY KEY ,
+   TITLE      VARCHAR2(100 Byte)  NOT NULL,
+   AUTHORS    VARCHAR2(50 Byte)  NOT NULL,
+   PRICE      NUMBER  NOT NULL,
+   INVENTORY  NUMBER  NOT NULL
+);
+
+CREATE TABLE CUSTOMER (
+   "uid"      VARCHAR2(10 Byte)  PRIMARY KEY,
+   NAME     VARCHAR2(50 Byte)    NOT NULL,
+   ADDRESS  VARCHAR2(200 Byte)   NOT NULL
+);
+
+CREATE TABLE BOOK_ORDER (
+   OID         VARCHAR2(8 Byte),
+   "uid"         VARCHAR2(10 Byte),
+   ISBN        VARCHAR2(13 Byte) ,
+   "date"      DATE                NOT NULL,
+   Quantity  NUMBER              NOT NULL,
+   Status    VARCHAR2(10 Byte)   NOT NULL,
+   FOREIGN KEY ("uid") REFERENCES CUSTOMER("uid"),
+   FOREIGN KEY (ISBN) REFERENCES BOOK(ISBN),
+   CONSTRAINT PK_BOOK_ORDER PRIMARY KEY (OID,"uid",ISBN)
+);
+INSERT INTO BOOK ( ISBN, TITLE, AUTHORS, PRICE, INVENTORY ) VALUES ( '0-1951-5141-1', 'adsfnkadsf', 'Mark P. O. Morford', 10, 110 );
+INSERT INTO BOOK ( ISBN, TITLE, AUTHORS, PRICE, INVENTORY ) VALUES ( '0-1951-5141-2', 'fndskjnfds', 'Mark P. O. asfas', 101, 10 );
+INSERT INTO BOOK ( ISBN, TITLE, AUTHORS, PRICE, INVENTORY ) VALUES ( '0-1951-5141-3', 'asdkjnfks', 'gdfgdf P. O. Morford', 110, 10 );
+INSERT INTO BOOK ( ISBN, TITLE, AUTHORS, PRICE, INVENTORY ) VALUES ( '0-1951-5141-4', 'af aqq', 'nndf P. O. Morford', 210, 710 );
+INSERT INTO BOOK ( ISBN, TITLE, AUTHORS, PRICE, INVENTORY ) VALUES ( '0-1951-5141-5', 'Book5', 'Mark. Morford', 150, 110 );
+INSERT INTO CUSTOMER ( "UID", NAME, ADDRESS ) VALUES ( '1', 'Donald', 'shaw' );
+INSERT INTO CUSTOMER ( "UID", NAME, ADDRESS ) VALUES ( '2', 'Man', 'shaw' );
+INSERT INTO CUSTOMER ( "UID", NAME, ADDRESS ) VALUES ( '3', 'Kim', 'UC' );
+INSERT INTO BOOK_ORDER ( OID, "UID", ISBN, "date", "quantity", "Status" ) VALUES ( '1', '1', '0-1951-5141-1', sysdate, 1, 'ordered' );
+INSERT INTO BOOK_ORDER ( OID, "UID", ISBN, "date", "quantity", "Status" ) VALUES ( '1', '1', '0-1951-5141-2', sysdate, 1, 'ordered' );
+INSERT INTO BOOK_ORDER ( OID, "UID", ISBN, "date", "quantity", "Status" ) VALUES ( '2', '2', '0-1951-5141-3', sysdate, 3, 'ordered' );
+INSERT INTO BOOK_ORDER ( OID, "UID", ISBN, "date", "quantity", "Status" ) VALUES ( '3', '3', '0-1951-5141-4', sysdate, 51, 'ordered' );
