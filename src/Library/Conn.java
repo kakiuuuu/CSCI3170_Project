@@ -22,6 +22,24 @@ public class Conn {
         return null;
     }
 
+    public static void executeSQL(Connection conn, String sql) {
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
+    public static void fixDateLanguage(Connection conn) {
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate("alter session set nls_date_language='american'");
+            stmt.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
 }

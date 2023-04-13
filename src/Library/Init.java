@@ -3,9 +3,6 @@ package Library;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Init {
@@ -58,15 +55,13 @@ public class Init {
             cs.execute();
             System.out.println("Dropping tables if exist...");
             System.out.println("Creating table Book...");
-            ResultSet rs = stmt.executeQuery(createBookSQL);
+            stmt.executeQuery(createBookSQL);
             System.out.println("Creating table Customer...");
-            rs = stmt.executeQuery(createCustomerSQL);
+            stmt.executeQuery(createCustomerSQL);
             System.out.println("Creating table Order...");
-            rs = stmt.executeQuery(createBookOrderSQL);
+            stmt.executeQuery(createBookOrderSQL);
             System.out.println("Finished creating tables.");
             Main.pressEnterToContinue();
-//            Main.clearScreen();
-            rs.close();
             stmt.close();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -77,14 +72,14 @@ public class Init {
         try {
             Statement stmt = conn.createStatement();
             System.out.println("Delete table Order record...");
-            ResultSet rs = stmt.executeQuery("TRUNCATE TABLE BOOK_ORDER");
+            stmt.executeQuery("TRUNCATE TABLE BOOK_ORDER");
             System.out.println("Delete table Book record...");
-            rs = stmt.executeQuery("TRUNCATE TABLE Book");
+            stmt.executeQuery("TRUNCATE TABLE Book");
             System.out.println("Delete table Customer record...");
-            rs = stmt.executeQuery("TRUNCATE TABLE Customer");
+            stmt.executeQuery("TRUNCATE TABLE Customer");
             System.out.println("Finished dropping tables.");
-            rs.close();
             stmt.close();
+            Main.pressEnterToContinue();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
@@ -93,6 +88,7 @@ public class Init {
 //    load init records from local files (e.g., txt, csv, tsv
     public static void loadData(Connection conn) {
         try {
+            Conn.fixDateLanguage(conn);
             Scanner scanner = new Scanner(new File("src/Book.txt"));
             Statement stmt = conn.createStatement();
             while (scanner.hasNextLine()) {
@@ -129,8 +125,6 @@ public class Init {
                 String UID = data[1];
                 String ISBN = data[2];
                 String date = data[3];
-//                Date date = new Date(data[3]);
-//                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                 int quantity = Integer.parseInt(data[4]);
                 String status = data[5];
                 String sql = "INSERT INTO BOOK_ORDER VALUES ('" + OID + "', '" + UID + "', '" + ISBN + "', '" + date + "', " + quantity + ", '" + status + "')";
@@ -139,9 +133,9 @@ public class Init {
             }
             scanner.close();
             stmt.close();
-        } catch (FileNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-//            System.err.println(e.getMessage());
+            Main.pressEnterToContinue();
+        } catch (FileNotFoundException | SQLException  e) {
+            System.err.println(e.getMessage());
         }
     }
 

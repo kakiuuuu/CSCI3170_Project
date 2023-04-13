@@ -70,8 +70,9 @@ public class Main {
         System.out.println("> 1 - Show All Books");
         System.out.println("> 2 - Show All Customers");
         System.out.println("> 3 - Show All Orders");
-        System.out.println("> 4 - Back to Main Menu");
-        System.out.print("\n>>> Please Enter Your Query (1-4): ");
+        System.out.println("> 4 - Raw Query");
+        System.out.println("> 5 - Back to Main Menu");
+        System.out.print("\n>>> Please Enter Your Query (1-5): ");
     }
 
     // Main driver method
@@ -96,7 +97,7 @@ public class Main {
             printMainMenu(conn);
             mainMenuChoice = input.nextLine();
             switch (mainMenuChoice) {
-                // TODO - Database Initialization
+                // DONE - Database Initialization
                 case "1" -> {
                     do {
                         printInitializeMenu(conn);
@@ -174,7 +175,6 @@ public class Main {
                                     break;
                                 }
                                 Status status = Status.values()[statusChoice];
-                                clearScreen();
                                 Order.updateStatus(conn, orderID, status);
                             }
 
@@ -206,10 +206,15 @@ public class Main {
                             case "1" -> Book.printAll(conn);
                             case "2" -> Customer.printAll(conn);
                             case "3" -> Order.printAll(conn);
-                            case "4" -> {}
+                            case "4" -> {
+                                System.out.print("Enter the query: ");
+                                String query = input.nextLine();
+                                Conn.executeSQL(conn, query);
+                            }
+                            case "5" -> {}
                             default -> System.out.println(">>> Please Enter Your Query: (1-4)");
                         }
-                    } while (!dbMenuChoice.equals("4"));
+                    } while (!dbMenuChoice.equals("5"));
                 }
                 case "5" -> System.out.println("Bye!");
                 default -> System.out.println(">>> Please Enter Your Query: (1-5)");
